@@ -22,7 +22,7 @@ box1.add(1);
 box1.add(2);
 box1.add(3);
 console.log(box1.count);
-console.log('------------------------------');
+console.log("------------------------------");
 var box = new Box();
 box.add("Pesho");
 box.add("Gosho");
