@@ -1,3 +1,23 @@
-p{
+* {
+    font-family: monospace;
+}
+
+p {
     color: red;
+}
+
+li {
+    text-transform: uppercase;
+}
+
+.kur{
+    color: rgb(102, 223, 122);
+}
+
+.one{
+    color: red;
+}
+
+.two{
+    color: green;
 }

@@ -1,1 +1,20 @@
-<p>first-component works! {{name}}</p>
+<p>first-component works!</p>
+
+<ul>
+  @for (n of users; track n.id) {
+      <li (click)="onClickLi(n)">{{ n.name }}---{{n.age}}----{{n.company?.name ?? 'N/A'}}</li>
+    }
+      @if(isLoggedIn){
+        <p>LogOut</p>
+    }@else{
+        <p>LoggIn!</p>
+    }
+
+</ul>
+
+<!-- <img [attr.src]="img" alt=""> -->
+
+
+<p [class]="colorClass">This is DYNAMIC LOADED CLASS</p>
+
+<button [class]="isColorChange ? 'one': 'two'" (click)="onClickIsColor()">CLICK {{counter}}</button>
