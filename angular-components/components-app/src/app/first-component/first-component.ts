@@ -47,7 +47,7 @@ export class FirstComponent {
   isLoggedIn: boolean = true;
 
   onClickBtn() {
-    console.log('Button is clicked');
+    // console.log('Button is clicked');
 
     this.counter += 1;
   }
@@ -64,11 +64,11 @@ export class FirstComponent {
 
   onClickIsColor() {
     this.isColorChange = !this.isColorChange;
-    console.log(this.isColorChange);
+    // console.log(this.isColorChange);
   }
 
   constructor() {
-    console.log('constructor log');
+    // console.log('constructor log');
     this.img =
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToNj3KVn4EbrLuoJ0qYoLWQ4LSiQNWAjQsNQ&s';
   }
