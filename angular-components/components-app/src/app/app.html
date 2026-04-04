@@ -234,6 +234,10 @@
           <clipPath id="a"><path fill="#fff" d="M0 0h982v239H0z" /></clipPath>
         </defs>
       </svg>
+      <app-child [childMessage]="parrentMessage"></app-child>
+
+      <app-child (childClickedEvent)="handleChildEvent($event)"></app-child >
+
       <h1>Hello, {{ title() }}</h1>
       <app-demo-lifecycle></app-demo-lifecycle>
 
@@ -273,6 +277,7 @@
           </a>
         }
       </div>
+
       <div class="social-links">
         <a
           href="https://github.com/angular/angular"

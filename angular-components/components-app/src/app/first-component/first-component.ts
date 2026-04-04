@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user.model';
 import { Company } from '../models/company';
+import { UsersService } from '../services/products.service';
 
 @Component({
   selector: 'app-first-component',
@@ -8,39 +9,8 @@ import { Company } from '../models/company';
   templateUrl: './first-component.html',
   styleUrl: './first-component.css',
 })
-export class FirstComponent {
-  users: User[] = [
-    {
-      id: 1,
-      name: 'QESHO',
-      age: 66,
-      company: <Company>{
-        name: 'muni',
-      },
-    },
-    {
-      id: 2,
-      name: 'pESHO',
-      age: 44,
-  
-    },
-    {
-      id: 3,
-      name: 'MESHO',
-      age: 22,
-      company: <Company>{
-        name: 'huni',
-      },
-    },
-    {
-      id: 4,
-      name:'hjgfhjf',
-      age: 12,
-      company: <Company>{
-        name: 'babuni',
-      },
-    },
-  ];
+export class FirstComponent implements OnInit {
+ 
 
   counter: number = 0;
 
@@ -67,9 +37,19 @@ export class FirstComponent {
     // console.log(this.isColorChange);
   }
 
-  constructor() {
+  users:User[]=[]
+
+  constructor(private usersServ:UsersService) {
+
+
     // console.log('constructor log');
     this.img =
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToNj3KVn4EbrLuoJ0qYoLWQ4LSiQNWAjQsNQ&s';
   }
+  ngOnInit(): void {
+    this.users=this.usersServ.getUsers()
+  }
+
+
+
 }
