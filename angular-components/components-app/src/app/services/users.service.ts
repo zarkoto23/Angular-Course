@@ -2,12 +2,19 @@ import { Injectable } from "@angular/core";
 import { Company } from "../models/company";
 import { Product } from "../models/product.model";
 import { User } from "../models/user.model";
+import { Observable, of } from "rxjs";
+import { HttpClient } from "@angular/common/http";
+import { Post } from "../models/post.model";
 
 @Injectable({
   providedIn:'root'
 })
 
 export class UsersService{
+
+  constructor(private httpC:HttpClient){
+
+  }
 
     users: User[] = [
         {
@@ -42,10 +49,26 @@ export class UsersService{
         },
       ];
 
-    getUsers():User[]{
+    getUsers():Observable <User[]>{
 
-        return this.users
+        return of(this.users)
+    }
+
+    addUser(user:User){
+      this.users.push(user)
     }
 
 
+    getUserPosts():Observable<Post[]>{
+
+      const url='https://jsonplaceholder.typicode.com/posts'
+
+      
+
+      const resp= this.httpC.get<Post[]>(url)
+
+
+      return resp
+      
+    }
 }
