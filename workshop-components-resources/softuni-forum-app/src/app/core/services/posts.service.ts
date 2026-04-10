@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { Theme } from "../../models";
+import { Post, Theme } from "../../models";
 
 @Injectable({
     providedIn:'root'
@@ -15,7 +15,7 @@ export class PostsService{
 
     }
 
-    getLatestPosts(limit:number=5):Observable<Theme[]>{
-        return this.httpC.get<Theme[]>(this.apiUrl)
+    getLatestPosts(limit:number=5):Observable<Post[]>{
+        return this.httpC.get<Post[]>(this.apiUrl.replace('{0}', limit.toString()))
     }
 }

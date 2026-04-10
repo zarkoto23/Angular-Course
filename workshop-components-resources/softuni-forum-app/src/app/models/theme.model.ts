@@ -1,7 +1,10 @@
-import { Subscriber } from "../models"
+import {User } from "../models"
 
 export interface Theme{
-    name:string
-    userId:string
-    subscribers:Subscriber[]
+    id:string
+    themeName:string
+    userId:User
+    subscribers:string[]
+    posts:string[]
+    createdAt:Date
 }
