@@ -2,10 +2,11 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PostsService } from '../../../core/services';
 import { Post } from '../../../models';
 import { Subscription } from 'rxjs';
+import { PostItem } from "../post-item/post-item";
 
 @Component({
   selector: 'app-post-board',
-  imports: [],
+  imports: [PostItem],
   templateUrl: './post-board.html',
   styleUrl: './post-board.css',
 })
