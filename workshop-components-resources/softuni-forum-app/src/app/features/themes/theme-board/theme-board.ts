@@ -12,7 +12,6 @@ import { CommonModule } from '@angular/common';
   styleUrl: './theme-board.css',
 })
 export class ThemeBoard {
-  themes: Theme[] = [];
   themes$: Observable<Theme[]>;
 
   constructor(private themeService: ThemesService) {

@@ -16,7 +16,6 @@ export class PostBoard {
 
   posts$: Observable<Post[]>;
 
-  posts: Post[] = [];
 
   constructor(private postService: PostsService) {
     this.posts$ = this.postService.getLatestPosts();
