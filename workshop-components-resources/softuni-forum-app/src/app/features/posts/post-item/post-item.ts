@@ -8,7 +8,5 @@ import { Post } from '../../../models';
   styleUrl: './post-item.css',
 })
 export class PostItem {
-
-  @Input() post!:Post
-
+  @Input() post!: Post;
 }

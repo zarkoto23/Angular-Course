@@ -1,21 +1,17 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import { Post, Theme } from "../../models";
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Post, Theme } from '../../models';
 
 @Injectable({
-    providedIn:'root'
+  providedIn: 'root',
 })
+export class PostsService {
+  private apiUrl = 'http://localhost:3000/api/posts?limit={0}';
 
-export class PostsService{
+  constructor(private httpC: HttpClient) {}
 
-    private apiUrl='http://localhost:3000/api/posts?limit={0}'
-
-    constructor(private httpC:HttpClient){
-
-    }
-
-    getLatestPosts(limit:number=5):Observable<Post[]>{
-        return this.httpC.get<Post[]>(this.apiUrl.replace('{0}', limit.toString()))
-    }
+  getLatestPosts(limit: number = 5): Observable<Post[]> {
+    return this.httpC.get<Post[]>(this.apiUrl.replace('{0}', limit.toString()));
+  }
 }
