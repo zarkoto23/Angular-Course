@@ -8,7 +8,7 @@ describe('ThemeItem', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ThemeItem],
+      imports: [],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ThemeItem);

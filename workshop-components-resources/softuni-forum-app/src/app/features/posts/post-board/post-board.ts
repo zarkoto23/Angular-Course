@@ -1,33 +1,24 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PostsService } from '../../../core/services';
 import { Post } from '../../../models';
-import { Subscription } from 'rxjs';
-import { PostItem } from "../post-item/post-item";
+import { Observable, Subscription } from 'rxjs';
+import { PostItem } from '../post-item/post-item';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-post-board',
-  imports: [PostItem],
+  imports: [PostItem, CommonModule],
   templateUrl: './post-board.html',
   styleUrl: './post-board.css',
 })
-export class PostBoard implements OnInit, OnDestroy {
+export class PostBoard {
   subscriptions: Subscription[] = [];
+
+  posts$: Observable<Post[]>;
 
   posts: Post[] = [];
 
-  constructor(private postService: PostsService) {}
-
-  ngOnInit(): void {
-    this.subscriptions.push(
-      this.postService.getLatestPosts().subscribe((posts) => {
-        this.posts = posts;
-
-        console.log('oninit posts');
-      }),
-    );
-  }
-
-  ngOnDestroy(): void {
-    this.subscriptions.forEach((sub) => sub.unsubscribe());
+  constructor(private postService: PostsService) {
+    this.posts$ = this.postService.getLatestPosts();
   }
 }

@@ -1,41 +1,21 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ThemesService } from '../../../core/services';
 import { Theme } from '../../../models';
-import { Subscription } from 'rxjs';
-import { ThemeItem } from "../theme-item/theme-item";
+import { Observable, Subscription } from 'rxjs';
+import { ThemeItem } from '../theme-item/theme-item';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-theme-board',
-  imports: [ThemeItem],
+  imports: [ThemeItem, CommonModule],
   templateUrl: './theme-board.html',
   styleUrl: './theme-board.css',
 })
-export class ThemeBoard implements OnInit, OnDestroy{
+export class ThemeBoard {
+  themes: Theme[] = [];
+  themes$: Observable<Theme[]>;
 
-  susbsctiptions:Subscription[]=[]
-
-  themes:Theme[]=[]
-
-  constructor(private themeService:ThemesService){
-
-
+  constructor(private themeService: ThemesService) {
+    this.themes$ = this.themeService.getThemes();
   }
-
-  ngOnInit(): void {
-
-  this.susbsctiptions.push(this.themeService.getThemes().subscribe((themes)=>{
-    this.themes=themes
-    console.log(this.themes);
-  }))
-
-  
-    
-  }
-
-  ngOnDestroy(): void {
-    this.susbsctiptions.forEach(sub=>{
-      sub.unsubscribe()
-    })
-  }
-  
 }

@@ -2,7 +2,12 @@
     <h2 class="title">
         Recent posts
     </h2>
+
+
+    @for (postItem of posts$ |async ; track postItem._id) {
     <div>
-        <app-post-item></app-post-item>
+
+        <app-post-item [post]="postItem"></app-post-item>
     </div>
+    }
 </div>

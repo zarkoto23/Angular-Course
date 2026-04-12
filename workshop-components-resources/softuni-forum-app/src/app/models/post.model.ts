@@ -1,10 +1,9 @@
 import { User } from './user.model';
 
 export interface Post {
-  id: string;
+  _id: string;
   text: string;
   userId: User;
-  username: string;
-  themeId: string;
+  // username: string;
   created_at: Date;
 }

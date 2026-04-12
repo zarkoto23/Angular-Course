@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { Theme } from '../../../models';
 
 @Component({
@@ -8,7 +8,5 @@ import { Theme } from '../../../models';
   styleUrl: './theme-item.css',
 })
 export class ThemeItem {
-
-  @Input() theme!:Theme
-
+  @Input() theme!: Theme;
 }
