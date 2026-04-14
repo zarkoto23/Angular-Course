@@ -7,8 +7,7 @@ import { User } from '../../models';
 export class AuthService {
   private _isLoggedIn = signal<boolean>(false);
   private _currentUser = signal<User | null>(null);
-
-  private_users: User[] = [
+  private _users: User[] = [
     {
       _id: '5fa64a072183ce1728ff3719',
       username: 'David',
@@ -23,9 +22,45 @@ export class AuthService {
     },
   ];
 
-  login(): void {}
+  constructor() {
+    const savedUser = localStorage.getItem('_currentUser');
 
-  register(): void {}
+    if (savedUser) {
+      const user: User = JSON.parse(savedUser);
+      this._currentUser.set(user);
+      this._isLoggedIn.set(true);
+    }
+  }
+
+  login(email: string, password: string): boolean {
+    if (email && password) {
+      const user = this._users[0];
+
+      localStorage.setItem('currentUser', JSON.stringify(user));
+
+      return true;
+    }
+
+    return false;
+  }
+
+  register(email: string, username: string, password: string, rePass: string): boolean {
+    if (email && username && password && rePass) {
+      const newUser: User = {
+        _id: `user_${Date.now()}`,
+        username: username,
+      };
+
+      this._users.push(newUser);
+      this._currentUser.set(newUser);
+      this._isLoggedIn.set(true);
+
+      localStorage.setItem('currentUser', JSON.stringify(newUser));
+
+      return true;
+    }
+    return false;
+  }
 
   logout(): void {}
 }
