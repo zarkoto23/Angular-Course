@@ -9,7 +9,7 @@ export class AuthService {
   private _currentUser = signal<User | null>(null);
   private _users: User[] = [
     {
-      _id: '5fa64a072183ce1728ff3719',
+      _id: '5fa64b162183ce1728ff371d',
       username: 'David',
     },
     {
@@ -21,6 +21,12 @@ export class AuthService {
       username: 'Stephan',
     },
   ];
+
+
+  public isLoggedIn=this._isLoggedIn.asReadonly()
+  public currentUser=this._currentUser.asReadonly()
+
+
 
   constructor() {
     const savedUser = localStorage.getItem('_currentUser');
@@ -62,5 +68,14 @@ export class AuthService {
     return false;
   }
 
-  logout(): void {}
+  logout(): void {
+
+    this._currentUser.set(null)
+    this._isLoggedIn.set(false)
+    localStorage.removeItem('currentUser')
+  }
+
+  getCurrentUserId():string|null{
+    return this._currentUser()?._id||null
+  }
 }
