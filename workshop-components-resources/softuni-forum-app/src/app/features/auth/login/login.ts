@@ -25,7 +25,7 @@ export class Login {
 
   validateEmail():void{
     if(!this.email){
-      this.emailError=false
+      this.emailError=true
       this.emailErrMsg='email is requred!!'
     }else if(!this.isValidateEmail(this.email)){
       this.emailError=true
