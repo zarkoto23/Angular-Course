@@ -58,7 +58,7 @@ export class Login {
   }
 
   isFormValid():boolean{
-    return Boolean(this.email)&& Boolean(this.password)&& !this.emailError && !this.passwordErrMsg
+    return Boolean(this.email)&& Boolean(this.password)&& !this.emailError && !this.passwordError
   }
 
   onSubmit():void{
