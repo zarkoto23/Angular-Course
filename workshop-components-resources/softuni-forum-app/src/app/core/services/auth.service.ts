@@ -50,8 +50,8 @@ export class AuthService {
     return false;
   }
 
-  register(email: string, username: string, password: string, rePass: string): boolean {
-    if (email && username && password && rePass) {
+  register(email: string, username: string,phone:string, password: string, rePass: string): boolean {
+    if (email && username && password && rePass&&phone) {
       const newUser: User = {
         _id: `user_${Date.now()}`,
         username: username,
