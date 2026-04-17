@@ -56,5 +56,21 @@ export class Login {
     }
   }
 
+  isFormValid():boolean{
+    return Boolean(this.email)&& Boolean(this.password)&& !this.emailError && !this.passwordErrMsg
+  }
+
+  onSumbit():void{
+    this.validateEmail()
+    this.validatePassword()
+
+    if(this.isFormValid()){
+      const res=this.authService.login(this.email, this.password)
+
+      if(res===true){
+        this.router.navigate(['/home'])
+      }
+    }
+  }
 
 }
