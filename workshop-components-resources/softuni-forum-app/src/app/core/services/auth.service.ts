@@ -22,14 +22,11 @@ export class AuthService {
     },
   ];
 
-
-  public isLoggedIn=this._isLoggedIn.asReadonly()
-  public currentUser=this._currentUser.asReadonly()
-
-
+  public isLoggedIn = this._isLoggedIn.asReadonly();
+  public currentUser = this._currentUser.asReadonly();
 
   constructor() {
-    const savedUser = localStorage.getItem('_currentUser');
+    const savedUser = localStorage.getItem('currentUser');
 
     if (savedUser) {
       const user: User = JSON.parse(savedUser);
@@ -50,8 +47,14 @@ export class AuthService {
     return false;
   }
 
-  register(email: string, username: string,phone:string, password: string, rePass: string): boolean {
-    if (email && username && password && rePass&&phone) {
+  register(
+    email: string,
+    username: string,
+    phone: string,
+    password: string,
+    rePass: string,
+  ): boolean {
+    if (email && username && password && rePass && phone) {
       const newUser: User = {
         _id: `user_${Date.now()}`,
         username: username,
@@ -69,13 +72,12 @@ export class AuthService {
   }
 
   logout(): void {
-
-    this._currentUser.set(null)
-    this._isLoggedIn.set(false)
-    localStorage.removeItem('currentUser')
+    this._currentUser.set(null);
+    this._isLoggedIn.set(false);
+    localStorage.removeItem('currentUser');
   }
 
-  getCurrentUserId():string|null{
-    return this._currentUser()?._id||null
+  getCurrentUserId(): string | null {
+    return this._currentUser()?._id || null;
   }
 }

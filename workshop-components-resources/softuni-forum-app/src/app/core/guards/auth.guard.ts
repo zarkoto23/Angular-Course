@@ -4,6 +4,7 @@ import {
   CanActivateFn,
   Router,
   RouterStateSnapshot,
+  UrlTree,
 } from '@angular/router';
 import { AuthService } from '../services';
 
@@ -15,9 +16,11 @@ export const authGuard: CanActivateFn = (
 
   const router = inject(Router);
 
-  if(authService.isLoggedIn){
-    return true
+  if (authService.isLoggedIn()) {
+    return true;
   }
 
-  return false;
+  return router.createUrlTree(['/login'], {
+    // queryParams:{returnUrl:state.url}
+  });
 };
