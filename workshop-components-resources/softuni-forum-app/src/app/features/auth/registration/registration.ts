@@ -34,7 +34,7 @@ export class Registration {
   validateUsername(): void {
     if (!this.username) {
       this.usernameErr = true;
-      this.usernameErrMsg = 'email is requred!!';
+      this.usernameErrMsg = 'username is requred!!';
     } else {
       this.usernameErr = false;
       this.usernameErrMsg = '';
@@ -96,20 +96,19 @@ export class Registration {
     }
   }
 
-  
-  isFormValid():boolean{
-    return Boolean(this.rePass)&&
-     Boolean(this.email)&& 
-     Boolean(this.password)&&
-     Boolean(this.phone) && 
-     Boolean(this.username)&&
-     !this.emailErr && 
-     !this.passwordErr && 
-     !this.usernameErr &&
-     !this.phoneErr &&
-     !this.rePassErr
-
-
+  isFormValid(): boolean {
+    return (
+      Boolean(this.rePass) &&
+      Boolean(this.email) &&
+      Boolean(this.password) &&
+      Boolean(this.phone) &&
+      Boolean(this.username) &&
+      !this.emailErr &&
+      !this.passwordErr &&
+      !this.usernameErr &&
+      !this.phoneErr &&
+      !this.rePassErr
+    );
   }
 
   private isValidateEmail(email: string): boolean {
@@ -124,21 +123,25 @@ export class Registration {
     return phoneRegex.test(phone);
   }
 
+  onSubmit(): void {
+    this.validateEmail();
+    this.validatePassword();
+    this.validateRePass();
+    this.validateUsername();
+    this.validatePhone();
 
-  onSubmit():void{
-    this.validateEmail()
-    this.validatePassword()
-    this.validateRePass()
-    this.validateUsername()
-    this.validatePhone()
+    if (this.isFormValid()) {
+      const res = this.authService.register(
+        this.email,
+        this.password,
+        this.rePass,
+        this.username,
+        this.phone,
+      );
 
-    if(this.isFormValid()){
-      const res=this.authService.register(this.email, this.password, this.rePass, this.username, this.phone)
-
-      if(res===true){
-        this.router.navigate(['/home'])
+      if (res === true) {
+        this.router.navigate(['/home']);
       }
     }
   }
-
 }

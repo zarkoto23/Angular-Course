@@ -1,1 +1,96 @@
-<p>registration works!</p>
+<form class="register" (ngSubmit)="onSubmit()" method="post">
+
+    <fieldset>
+        <h2>Registration Form</h2>
+
+        <!-- username -->
+        <p class="field field-icon">
+            <label for="username"><span><i class="fas fa-user"></i></span></label>
+            <input [class.input-error] type="text" name="username" id="username" 
+            placeholder="Johny"
+            [(ngModel)]="username"
+            (blur)="validateUsername()">
+        </p>
+        @if(usernameErr){
+
+            <p class="error">
+                {{usernameErrMsg}}
+            </p>
+        }
+
+        <!-- email -->
+        <p class="field field-icon">
+            <label for="email"><span><i class="fas fa-envelope"></i></span></label>
+            <input [class.input-error]="emailErr"
+            type="email" name="email" id="email" placeholder="john.doe@gmail.com"
+            [(ngModel)]="email"
+            (blur)="validateEmail()">
+        </p>
+
+        @if(emailErr){
+
+            <p class="error">
+                {{emailErrMsg}}
+            </p>
+          
+        }
+
+        <!-- telephone -->
+        <p class="field field-icon">
+            <label for="tel"><span><i class="fas fa-phone"></i></span></label>
+            <select name="select-tel" id="select-tel" class="tel">
+                <option value="00359">+359</option>
+            </select>
+            <input [class.input-error]="phoneErr" type="text" name="tel" id="tel" 
+            placeholder="885 888 888"
+            [(ngModel)]="phone" (blur)="validatePhone()">
+        </p>
+
+          @if(phoneErr){
+
+            <p class="error">
+                {{phoneErrMsg}}
+            </p>
+          
+        }
+
+        <!-- password -->
+        <p class="field field-icon">
+            <label for="password"><span><i class="fas fa-lock"></i></span></label>
+            <input [class.input-error] type="password" name="password" id="password" 
+            placeholder="******"
+            [(ngModel)]="password"
+            (blur)="validatePassword()">
+        </p>
+
+        @if (passwordErr) {
+
+            <p class="error">
+                {{passwordErrMsg}}
+            </p>
+     
+            }
+
+        <!-- rePass -->
+        <p class="field field-icon">
+            <label for="rePass"><span><i class="fas fa-lock"></i></span></label>
+            <input [class.input-error] type="password" name="rePass" id="rePass" 
+            placeholder="******"
+            [(ngModel)]="rePass"
+            (blur)="validateRePass()">
+        </p>
+
+        @if(rePassErr){
+
+            <p class="error">{{rePassErrMsg}}</p>
+        }
+
+        <button [disabled]="!isFormValid()">Create Account</button>
+
+        <p class="text-center">
+            Have an account?
+            <a routerLink="/login">Log In</a>
+        </p>
+
+    </fieldset>
+</form>
