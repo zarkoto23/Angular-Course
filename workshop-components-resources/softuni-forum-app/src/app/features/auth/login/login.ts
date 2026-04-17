@@ -52,7 +52,7 @@ export class Login {
       this.passwordError=true
       this.passwordErrMsg='password should be minimum 4ch'
     }else{
-      this.passwordError=true
+      this.passwordError=false
       this.passwordErrMsg=''
     }
   }

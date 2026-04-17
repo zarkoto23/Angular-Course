@@ -23,6 +23,13 @@
                 placeholder="******" [(ngModel)]="password" (blur)="validatePassword()">
         </p>
 
+        @if(passwordError){
+
+        <p class="error">
+            {{passwordErrMsg}}
+        </p>
+        }
+
 
         <button [disabled]="!isFormValid()">Login</button>
 
