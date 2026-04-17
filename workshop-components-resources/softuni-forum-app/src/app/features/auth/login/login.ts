@@ -1,9 +1,60 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { AuthService } from '../../../core/services';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
-export class Login {}
+export class Login {
+  private authService=inject(AuthService)
+  private router=inject(Router)
+
+
+  email:string=''
+  password:string=''
+  emailError:boolean=false
+  passwordError:boolean=false
+
+  emailErrMsg:string=''
+  passwordErrMsg:string=''
+
+
+  validateEmail():void{
+    if(!this.email){
+      this.emailError=false
+      this.emailErrMsg='email is requred!!'
+    }else if(!this.isValidateEmail(this.email)){
+      this.emailError=true
+      this.emailErrMsg='email is not valid (rgx) '
+
+    }else{
+      this.emailError=false
+      this.emailErrMsg=''
+    }
+  }
+
+  private isValidateEmail(email:string):boolean{
+    const emailRegex=/^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+    return emailRegex.test(email)
+
+  }
+
+  validatePassword():void{
+    if(!this.password){
+      this.passwordError=true
+      this.passwordErrMsg='pass is not validate'
+    }else if(this.password.length<4){
+      this.passwordError=true
+      this.passwordErrMsg='password should be minimum 4ch'
+    }else{
+      this.passwordError=true
+      this.passwordErrMsg=''
+    }
+  }
+
+
+}
