@@ -1,10 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { AuthService } from '../../../core/services';
 import { Router, RouterLink } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
-  imports: [RouterLink],
+  imports: [RouterLink, FormsModule ],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
@@ -60,7 +61,7 @@ export class Login {
     return Boolean(this.email)&& Boolean(this.password)&& !this.emailError && !this.passwordErrMsg
   }
 
-  onSumbit():void{
+  onSubmit():void{
     this.validateEmail()
     this.validatePassword()
 
