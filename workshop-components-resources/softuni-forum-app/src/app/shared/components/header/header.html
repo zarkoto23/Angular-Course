@@ -6,25 +6,37 @@
         </div>
         <div class="mini-navbar">
             <ul>
+                @if(authService.isLoggedIn()){
+
                 <li>
-                    <a href="#">Login</a>
+                    <a routerLink="/profile">{{authService.currentUser()?.username}}'s profile!</a>
                 </li>
                 <li>
-                    <a href="#">Register</a>
+                    <a (click)="authService.logout()">Logout</a>
                 </li>
+                } @else {
+                <li>
+                    <a routerLink="/register">Register</a>
+                </li>
+                      <li>
+                    <a routerLink="/login">Login</a>
+                </li>
+
+                }
+
             </ul>
         </div>
     </div>
     <nav>
         <ul>
             <li>
-                <a href="#">Home</a>
+                <a>Home</a>
             </li>
             <li>
-                <a href="#">Themes</a>
+                <a>Themes</a>
             </li>
             <li>
-                <a href="#">New Theme</a>
+                <a>New Theme</a>
             </li>
         </ul>
     </nav>
